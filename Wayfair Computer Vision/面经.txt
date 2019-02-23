@@ -1,0 +1,55 @@
+
+12月初去的wayfair onsite。面的是Data Scientist岗位，我的岗位比较特殊，是关于Computer Vision的。
+面试一共三轮，没有很难的算法题，多数都是case interview。最后一轮是behavior不过也考了case。
+1. 国人小哥，怎么做recommendation system，给定历史用户数据，首先分析怎么找特征（用户信息，偏好家具类型，价格等等），着重从商品图片入手对图片进行特征提取和分析。怎么根据图片的相似性进行用户特征抓取和推荐。
+
+2. 外国小哥，纯算法，就一道很简单，likou原题。给定一个整数，求其近似整数平方根，如144->12, 150->12。二分法即可。
+
+3. Behavior问题问了半个小时，就是以前项目开发的过程啊，如果跟踪客户需求等等。最后让以把客户当白痴的方法向他们讲述一个自己设计的系统。估计就跪在这里了。
+
+觉得CV方向的DS还是喜欢招博士一些。大家加油。
+-------------------------------------------------------------------------------------------------
+1. 怎么定位一张图片中的一个物体，比如一张图片定位椅子在哪里。可以用CV传统算法或CNN. 
+2. 3D reconstruction，传统CV算法
+
+-------------------------------------------------------------------------------------------------
+
+回馈地里，提供一下今天上午的新鲜面经～
+
+面的是Data Science - algo & pricing team。上来面试官先介绍了一下data science团队的基本构成和大体工作内容，然后就share screen了wayfair的网站开始case，case就是on sale tag对商品销售的影响。具体信息是the company's marketing team will choose what products to promote every two weeks, and send marketing email of these promotions to customers, how would you estimate the average effect of the tag
+
+
+1. base on the historical data，如何衡量effect，怎么考虑其他可能的disruptive factors and consider only the sale tag's effect
+2. we would like to conduct AB testing, how would you design the experiment. How would you evaluate the result?
+3. say for example the result from AB testing suggests that the tag would have a positive effect on products' sale, how would you go on propose how to measure the amount of the sale tag's effect? Given that we have product feature vector for each product.
+4. modify the above model to adjust for product level, consumer+product level.
+
+
+之前看地里面经的时候觉得这样一个topic要怎么问45分钟，结果确实聊了很久，整体感觉是每一个问题都会问到很细节，到具体怎么建model怎么选feature怎么interpret result的程度～
+-------------------------------------------------------------------------------------------------
+昨天刚面完wayfair DS Algorithm and profit 组。过来分享一下面经。
+11月初电面，一个物理phd小哥，基本就是问问你的简历。聊一聊你的project（最好准备一个machine learning的），会问一些细节，比如你为啥用这个model 不用 那个 model，解释一下这个model是啥意思，你该如何从头开始建模等等。接着就是一个case。Wayfair的case说实话，没法做专门的准备，基本都是面试官当前在做的project。但你可以准备一些比较general的，因为wayfair做的东西本质是recommendation system，所以你可以看看recommendation system 的书，不用看的很细，就是看看有啥概念你需要了解一下。而且因为wayfair是网上购物，那你需要了解一下online shopping 相关的概念，最后基本就是把脑洞打开点。技术上的你要知道啥是colaborate filtering，啥是feature filtering。具体machine learning的东西他们不会问的太细，毕竟都是调包。电面的case是关于如何确认登陆的是同一个人。
+
+之后16号终面，2case1个behavior。两个case基本也都是怎么group together，用什么metrics，用什么模型等等。需要注意的是，business sense也很重要。比如其中一问是“如果你只有有限的资源去分析公司的产品，你该如何处理优先级？” 正确答案是“优先看量大利润高的产品。。。“。还有”among all the features, what do you think is the most imporant feature" 答案可以是“price”. behavior的话，就是仔细问问你的简历，然后让你讲讲你的project和research，等等。
+
+哦，最后hr会和你要code sample。需要100line以上，比较substantial的，写成class， well documented什么的。
+
+材料的话，我推荐这两本书，网上都可以下：
+Hands-On Machine Learning with Scikit-Learn and TensorFlow （大略浏览一下）
+Mining of Massive Datasets （重点看看similarity和recoomendation system的章节，有不少有用的概念）
+当然，你也要浏览一下wayfair的网站，看看wayfair的产品都有哪些feature （price，manufacturer，specification等等），聊的时候起码知道能从那些方面描述产品.
+
+补充内容 (2018-3-6 10:55):
+2018-3-5 补充：入职一个月，这两周每天组里DS都在面试，想跟大家说一下。面试的case很多应聘的提前准备原题这事我们公司也知道，所以其实最近的面试开始侧重于深挖你的resume 上 project细节。希望大家注意。
+
+-------------------------------------------------------------------------------------------------
+上来先是双方自我介绍，然后就开始case study：问如何得知两条记录归属于同一个用户？
+
+大概问了data metric，每个feature的合理性和方向性，选择什么model，为什么选择这些model，从什么方面判断model的准确性...
+-------------------------------------------------------------------------------------------------
+受益于地里面经，来回馈一下自己的面试过程。我申的ds组（非algo）面我的2个面试官一个merchandise组负责label product tagging一个印度小哥在display MKT。
+面试分成10min介绍自己+30-45 min case + Q&A. 着重问了我简历上text analytics项目，没有特别多challenge。然后就是case了，依旧是match same user的题！其它地里面经已经可以覆盖所有问题了：
+一只田，如果您要查看本帖隐藏内容请回复
+这部分我花了好久才明白是什么意思，还说了Imbalance data的问题，但好像说多了。。。面试官很有耐心一遍遍解释给我提示最后终于救回来了。。。
+
+然后问我有没有什么问题，我就问他俩是不是一个组的，typical project, challenge，team work culture什么的然后就到点结束了。
