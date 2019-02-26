@@ -53,3 +53,27 @@ Mining of Massive Datasets （重点看看similarity和recoomendation system的�
 这部分我花了好久才明白是什么意思，还说了Imbalance data的问题，但好像说多了。。。面试官很有耐心一遍遍解释给我提示最后终于救回来了。。。
 
 然后问我有没有什么问题，我就问他俩是不是一个组的，typical project, challenge，team work culture什么的然后就到点结束了。
+
+
+
+-------------------------------------------------------------------------------------------------
+刚在另外一个帖子里面回了自己对ml面试的总结，单独发个帖子吧。其实不是专门做machine learning的，但是强行申请了各家的ml的职位。
+
+1. 几本教科书。。。（ESl, PRML或者Kevin Murphy的ML)。看比较浅的就行了，因为面试时候大概一般推不了太复杂的公司。还有andrew ng的课件和notes， 不是coursera上的，就是他自己的课的，记不得地址了。里面有个讲怎么分析模型该怎么改进的，bias vs variance, cost fucntion或者optimization方法对不对是否收敛了之类的。同时也看了学校老师的ml的课件，感觉应付基础知识够了。
+
+2. 几个基本的模型的推导，cost function等等，比如naive Bayes， linear/logistic regression, random forest/decision tree
+
+3. performance measure: 几个metric，classification/regression分别用啥等等。基本从accuracy，confusion matrix, recall/precision, F-score 到 ROC吧。multiclass classification怎么衡量。recall, precision, Fscore之类的具体是怎么算的，应该也得记住
+
+4. unbalanced dataset 怎么处理，这个基本每家都会问。（有家startup还问了我知不知道SMOTE。。。）
+
+5. bias variance这个基本每家也都会问 (Random Forest到底是什么呢，难道真的说是low bias low variance?)
+
+6. ml design: 感觉大部分时候是看feature engineering的感觉，此外就是怎么定义这个问题，是classification/regression还是unsupervised。感觉公司的话，主要还是在supervised方面来考察
+
+7. ml coding: 感觉在半个小时时间里面只能写Kmeans或者KNN。。。 knn的话，选topK的话可以用quick selection 达到 O(n) 来代替sort或者heap。或者就是distance measure的变种。。。比如Zillow家的cosine distance。话说我刚巧之前一个project尝试了几乎所有的distance measure。。。否则应该还不会记得cosine distance的公式怎么写。
+
+最后有个问题就是：对于一个classification问题，如果training set里面 label是有错误，改怎么处理。我不知道到底该怎么解决，一般说出来的方法是，就是train一个带probability的model(比如logistic regression)，然后根据预测的结果，两边都选probability高的，重新train。 （潜在缺点是，可能全选了错label的，所以可能需要多次random sampling
+
+
+8. Recommendation system： Netfix 如何推荐，亚马逊产品怎么推荐，Fb的Newsfeed怎么排序等等。这些问题面试ML SDE的时候也会问到。
