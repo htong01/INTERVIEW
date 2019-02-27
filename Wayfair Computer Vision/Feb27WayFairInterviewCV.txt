@@ -1,0 +1,45 @@
+自我介绍+对项目的提问+case study
+
+- Colorization 没有椅子腿？ 
+	模型精度不够，用的是pre-trained model
+- Semantic segmentation，速度慢，8fps，你要怎么提升速度？
+	down sample, shrink resolution
+- 但是会不会有很多细节丢失？
+	如果你的物品在边缘没什么尖锐的转折变换，就没什么问题
+- 如果你的椅子上有别的物品，你要怎么只改变椅子的颜色而不是全部？
+	先把椅子segment出来，再在椅子的范围内检测是不是还有别的东西在，最后把这俩segmentation result的mask merge起来
+- 如果椅子只有半个呢？并不是完整的？
+	模型training的时候已经考虑过这种情况，用的是复杂的室内环境做的training data，Microsoft coco dataset
+- 你知道semantic segmentation算法是怎么做的吗？
+	不知道，只会一键调包
+- 怎么把模型从python转到iOS平台的？
+	save tensors and use tf-coreml function in python
+- TensorFlow 是怎么把模型导出的？
+- 介绍一下你别的和computer vision有关的项目经历
+	河道，4点拼两张图
+- 怎么加的feature points？加了多少？
+	图片是带GPS信息的，在整个大的范围内随机生成的再overlay到每张图片上
+- 你有没有觉得你做的东西还是更偏向于传统的computer vision算法，而不是deep learning based
+	是
+- 有没有上过deep learning课？有没有自己训练过模型？
+	没有
+
+- python 怎么iteration dict
+- quick sort 和merge sort 区别
+	pivot，worst case time complexity quick is O(n^2)
+	quick sort in space while merge sort need extra space 
+- linux里怎么给文件重命名？怎么看txt里的内容？
+	重命名不会，用vim看
+
+- Case: 通过颜色来搜索图片要怎么做？
+	kmeans来取出dominant color
+- 那要如何确定k？
+	人工定一个个去试
+- 是怎么评价哪个k更好的？
+	把dominant color颜色相近的放一组里对比？
+	dominant color的分布variance，variance小则认为这个k更好
+- ⬆️kmeans 是有自己的评价函数的，silhouette score in sklearn
+- object based?
+	object detection and label them
+
+- Why Wayfair?

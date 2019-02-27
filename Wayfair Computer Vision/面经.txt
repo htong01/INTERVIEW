@@ -8,9 +8,59 @@
 3. Behavior问题问了半个小时，就是以前项目开发的过程啊，如果跟踪客户需求等等。最后让以把客户当白痴的方法向他们讲述一个自己设计的系统。估计就跪在这里了。
 
 觉得CV方向的DS还是喜欢招博士一些。大家加油。
--------------------------------------------------------------------------------------------------
+
+
+电面：
 1. 怎么定位一张图片中的一个物体，比如一张图片定位椅子在哪里。可以用CV传统算法或CNN. 
 2. 3D reconstruction，传统CV算法
+
+-------------------------------------------------------------------------------------------------
+大概是2018.12月猎头在linkedin上的联系，聊好了之后就开始了面试。
+
+第一轮就是和猎头的电话面试，大概45分钟左右。涉及到的问题主要有：
+1. 你对WF了解多少？
+2. 你做过什么相关的项目？
+3. 为什么要选择跳槽？
+...
+总之这一轮和平常的猎头面差不多，时间会更长一些。把自己的简历上的经历全部弄熟，就没有什么问题。
+
+他家效率很高，很快约谈了下一轮。
+
+
+第二轮是技术面，一个白人小哥，非常友好。面试题目是device graph。
+
+上来就问我有没有问题要问他。 我说暂时没有，可能我们聊多了之后对你们的case更了解之后会有更多的问题。（其实我觉得这里可以事先先准备一下。）
+
+他问得非常循序渐进，先问：我们为什么要为用户建立device graph,好处是什么？回答 1. 对用户进行product recommendation非常有帮助，因为可以了解到用户以往的browsing history, orders等等。2. （应该是一个比较加分的回答）对于我们计算market campaign的实际效果有帮助。就是如果我们在某个地方投入了广告，在我们计算这个广告的performance的时候，我们可以通过device graph知道用户是以前就来过，还是由于我们的marketing才来的。然后他问，当我们有了许多devices的信息，我们可以用哪些features来判断是否属于同一用户呢？我记得我答了诸如ip address, system (iOS, Android, Win, Mac, ...),  email address, area等信息。他说ok。后边的我没听太懂，只记得他说假设有一个大的table, rows是每一个device-user pair, column是所有的features, 问这个table有什么问题。答案是这个table太大了，因为不是所有的device和user都有pair(我听得一脸懵逼)。具体后边的follow-up实在记不得了，只记得他问了用哪个classifier最efficient, 我回答的是definitely not SVM, 因为你们这个问题肯定是一个multi-class的problem， 如果用SVM的话需要好多次1vs all, 这样子就太慢了。我建议一开始先用linear regression, 不行的话再用random forest, whose nature is a multi-class classifier. 他说make sense. 
+
+最后他还问了一句，有没有一些questions你expect me to ask? 我说我以为你会问我一些简历上的问题，然后问为什么选择这个算法之类的。他接着就吐槽了一下问简历不太好，因为大家都超级熟悉简历，简历明显不是一个很好的discriminator. 我表示深刻赞同，他对我的理解表示非常满意。（我真是醉了）
+
+第二天收到了面试邀请。 
+
+Onsite面经：
+
+一共四轮，第一轮普通面，二三轮是case, 最后一轮是coding. 
+
+第一轮30分钟，主要问我们对WF的了解（为什么WF），为什么要跳槽以及做过什么相关的经历。key只有一个，千万千万不要说前东家坏话，一点点都不行。我当时暗示了一下现在工作的地方年龄太大，她瞬间就眉头一皱。我的心凉了半截。
+
+第二轮是email marketing的case, 参考我附近阿里"email marketing"的第一个大神的回答，一模一样。这一轮他一开始还问了一下简历，并且他是挑简历最后边的内容问的，可能WF员工都防着简历的前几个project吧，毕竟都是大家最熟悉的。所以大家一定要对简历所有的内容都非常非常非常熟才行。我这次跪掉我觉得很大一部分原因就是他们老是挑简历里边边边角角的东西问，有些东西我已经有些时间没接触了，所以不太熟。
+
+第三轮是NLP的内容。一开始又是问了一些简历里边边角角的东西（哭。。。）。 他知道我是CV背景的，所以case开始后边指导边问了一些normalization, stemming&lemmatization, representation（TFIDF）等pre-processing的问题，无压力。后边他说it comes the juicy part, 说如果现在有了关于每个商品的text description, 并且获得了他们的tfidf representation, 如何对他们进行分类到不同的tag. 紧接着问了feature selection, PCA的问题。楼主在这里准备得不是很充分，跪。
+
+第四轮是coding, 说给定一个basket, 里面有[['apple',4],['banana', 3],['orange', 5], ...], 让我们写一个program，input是basket, 和一个integer, output一个水果。这个integer如果是[0,4)，output "apple", 如果是[4,7), output "banana", 如果是[7,12), output "orange", ....  我第一步是建立了一个dictionary, key是水果名，value是数值范围。然后查找那个integer属于哪个范围。 假如一共有n种水果， 这个方法time complexity是O(n), space也是O(n)。应该还有更好的解法吧，欢迎大家讨论。
+
+Link我找不到了，我把那个大神的回答贴上来吧。（以下内容均为我复制粘贴该大神的）
+
+•给用户发的广告email的模板里面有9行x2列,共18个位置, 怎么确定这18个不同的广告(他们叫event)哪个更有效?"
+•我的答案是: 我们可以通过多个metric来衡量: 1.广告的点击率 (CTR , click through rate), 同样是发出去100次的广告, 被用户点了80次的和只点了20次的比, 点了80次的对于用户来讲就是更有吸引力;  2. 广告的转化率(conversion rate, 也就是用户通过广告点进来以后,还完成了消费), 哪个广告的消费率越高, 哪个就更有效.
+
+•小哥说, "很好, 咱们就看CTR吧, 因为conversion rate一般都很低, 所以数据量有限. CTR 里面经常会有noise, 比如, 发出去的邮件, event可能还没完全加载, 用户就已经点进来了. 所以这些点击并不能算在event头上, 我们该怎么办?"
+•我的答案是 "event有没有加载不是可以track么? 你发出去的邮件不是有邮箱地址么? 你比对一下email address, 哪些click的event loading没有完成, 把这些email的events去掉不就可以了?"
+
+•小哥:"恩,我们确实可以这么做. 我的下一个问题是: 一封邮件里18个广告位有没有区别?比如第一排和最后一排?"
+•我:"这个问题提得好. 当然有区别, 所以我们不能consider their importance uniformly. We need to define a decay or discount factor when we calculate CTR for each event position."
+我:"首先,我们define 这个factor的目的是为了看每个position的natural CTR without any recommendation or personalization. So, data need to be unbiased. To achieve that, 我们可以把historical data里面的new user都挑出来, 选择new user的原因是we don't know anything about them, so the events in their emails are more closed to unbiased. Then we can compute CTR for each of 18 positions, which can be used to define discount factor."
+
 
 -------------------------------------------------------------------------------------------------
 
@@ -49,7 +99,7 @@ Mining of Massive Datasets （重点看看similarity和recoomendation system的�
 -------------------------------------------------------------------------------------------------
 受益于地里面经，来回馈一下自己的面试过程。我申的ds组（非algo）面我的2个面试官一个merchandise组负责label product tagging一个印度小哥在display MKT。
 面试分成10min介绍自己+30-45 min case + Q&A. 着重问了我简历上text analytics项目，没有特别多challenge。然后就是case了，依旧是match same user的题！其它地里面经已经可以覆盖所有问题了：
-一只田，如果您要查看本帖隐藏内容请回复
+
 这部分我花了好久才明白是什么意思，还说了Imbalance data的问题，但好像说多了。。。面试官很有耐心一遍遍解释给我提示最后终于救回来了。。。
 
 然后问我有没有什么问题，我就问他俩是不是一个组的，typical project, challenge，team work culture什么的然后就到点结束了。
