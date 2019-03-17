@@ -1,0 +1,98 @@
+----------2019.2.4-----------------------------
+drawbridge oa
+60 mins
+两道题
+第一道经纬度 判断是不是正确的输入
+第二题 类似 里口 而钥匙 只求 要增加多少
+
+第一题好理解 但是感觉写起来巨复杂 
+第二题 hard 题 
+
+两题都没做全对. 
+感觉很难
+---------2018.8.15-----------------------------
+刚刚收到画桥发的oa 马上就做了 看了很多地里的本来以为题目没多大变化 可是一做发现是新题
+60min 两题版
+
+第一题
+给一串string 问每个string最少改动几次才能使得没有相邻的两个字母一样
+比如 abb ---> aba 只用把b改成a就行 算1次
+或者 abbb 只用改中间的b就行 变成abxb 也算一次
+不用return怎么改 只用记录次数
+
+第二题 global maximum
+大坑啊
+是在一个不重复的integer list中找到所有size为m的组合 然后每个组合中挑出所有pair 比较绝对值
+然后在每个组合的绝对值中 找最小差值
+然后放在所有组合中 比较一个最大值 return这个最大值
+比如 {1,2,3,5,7} m = 4
+==> {1,2,3,7} {1,2,3,5} {1,2,5,7} {1,3,5,7} {2,3,5,7}
+在每一对中找出 最小的diff
+分别是 1  1 1 2 1 所以最后return 2
+
+lz本来用dfs找combination做看起来很轻松 但是最后几个test一直time limit 真的很绝望
+
+
+
+第一题不问具体操作只问次数显然dp。 
+f = Math.min(1 + f[i - 1], 1 + f[i - 2]) // 改当前字母， 或改前一个字母
+当然， 字母不一样f = f[i - 1];
+
+
+第二题不用dfs求出所有组合吧应该？个人思路目前是list排个序，然后比如m为4，就比较第一和倒数第三个，然后第二个和倒数第二个，第三个和倒数第一个，这几个数中最大的就是了
+
+----------------------2018。8.16-------------------------
+第一题是判断一个string是否valid，（a, b）这种形式的是valid，然后a，b是double，不能有leading 0；
+
+第二题是friend group， 输入（num, list1, list2, list3）输出 list4《integer》
+for example，（3，【friend， totall】，【1，3】，【2， 1】）
+
+num: total number of people
+if list1[i] == "friend", list2[i] and list3[i] become friends, they belong to a same group from now on;
+if list1[i] == "totall", add total number of people in list2[i]'s group and list3[i]'s group to list4;
+
+我用的是 map《integer， set》，然后更新这个map，不知道为啥好多testcase 不对
+
+--------------------2017.12.24---------------------------------
+一题 minMove 两个正整数数组 a 和 m 求将a 的每个数变成 m最小步数。例如a=(123) m=(223) minMove=1 或 a=(123, 456) m=(223,556) minMove=2.假设每个数的位数相同
+
+第二题 拥有相同degree的最短subarray。 degree定义为数组中某个数出现的最大频率。eg: array = (1, 2,2,3) degree = 2 minSubarray = (2, 2)
+
+-----------------2018.8.22-----------------------------------
+第一题还是cardinallity sort，但是不知道为啥自己ide都能过的case，到了那边总有一个过不了，就是完全互斥的两种排序，很不科学。。
+第二题是没有在面经里看到的，是蠡口伍的变种，这里要求结果的数量，因为会有重复的结果，就用了一个set来存可能的结果，最后返回set的size，不知道有没有更省空间的= =
+------------------2018.8.30---------------------------------------
+
+刚做的oa； 2道题目
+. check 1point3acres for more.
+1. Compress String 利特口德 思思三
+2. Min difference of list of strings,
+给两个list of string， 返回list of integer
+每个index上的对应string check一下是不是anagram， 如果是 返回0， 否则返回改变几个character能组成anagram
+
+-----------------------2018.8.14-------------------------------
+第一题经纬度合法性判断，给一个经纬度字符串，比如说"(-30, 50)",给一堆限制条件，比如不能有空格，不能超过180，判断字符串是不是合法。没什么技术含量，就是字符串操作。
+第二题判断输入的字符串有几个回文子串，不能重复,比如说输入google，输出6，因为回文有['e','l','goog','oo','o','g']
+
+--------------------2018.8.18------------------------------
+1. cardinality sorting
+cardinality = num of '1' in a number as binary reresentation.
+ex: 1 = 1, 2 = 1, 3 = 2, 4 = 1
+quesiton: sorting a list of num by their cardinality, if cardinality are same, put smaller number in decimal representation in first
+ex: input = [1,2,3,4], output = [1,2,4,3]
+
+
+2. consecutive sum
+question: given a num, return number of possible consecutive sum that is equal to this num.
+ex, num = 21, output = 3, because (1+2+3+4+5+6), (6,7,8), (10,11)
+
+--------------------2018.8.14---------------------------------
+第一题很简单，给一个string，将重复字母缩写一下就好，比如aaabbcc输出a3b2c2， abc输出abc
+第二题，题目描述很长，总结下来意思是，给一串有序数组和一个参数m，任意取数组中的m个数，这m个数的最小diff作为这组数的minDiff，找出所有可能的minDiff中的最大值
+举个例子，1 2 3 5, m是3，如果取1 2 3,那minDiff是1，如果取1 2 5，minDiff也是1，取1 3 5，最小minDiff是2，所以我们要找到这个最大的minDiff，最后返回2
+
+------------------------2018.1---------------------------------
+1. min moves， 最少的步数使两个数相等，比如1234和2334， 最少2步， 非常简单。
+2. degree of an array，找对小的subarray， 它的degree和原数组的degree相同， 里口原题。
+
+
